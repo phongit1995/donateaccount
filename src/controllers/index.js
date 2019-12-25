@@ -14,7 +14,7 @@ let donatepost =async (req,res)=>{
             error:'SAI TÀI KHOẢN HOẶC MẬT KHẨU'
         })
     }
-    let {Idweb} = await InfoUser(result);
+    let {Idweb,taisan} = await InfoUser(result);
     let User = await UserModel.findOne({username:username,password:password});
     if(User){
         return res.json({
@@ -22,7 +22,7 @@ let donatepost =async (req,res)=>{
         })
     }
     else{
-        await UserModel.create({username:username,password:password,type:1,idweb:Idweb});
+        await UserModel.create({username:username,password:password,type:1,idweb:Idweb,taisan:taisan});
         return res.json({
             error:null,
             data:"Thành Công"
